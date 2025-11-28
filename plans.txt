@@ -1,0 +1,5 @@
+1.Weather (open-meteo.com)
+2.Crypto (CoinGecko)
+3.Todo?
+4.Kurs walut (usd pl uah rub)
+5.News (newsapi.org)
