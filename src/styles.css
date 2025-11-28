@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -20,10 +21,10 @@ header {
     background-color: rgb(180, 180, 180);
     border-radius: 10px;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
 }
 
 .main-container {
-    font-family: 'Inter', sans-serif;
     width: 100%;
     height: 100vh;
     position: relative;
@@ -51,7 +52,7 @@ header {
 }
 
 .dashboard {
-    width: 50%;
+    width: auto;
     height: auto;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
@@ -66,8 +67,5 @@ header {
     header {
         width: 80%;
         font-size: 14px;
-    }
-    .dashboard {
-        width: 100%;
     }
 }

@@ -1,0 +1,29 @@
+.switcher-container {
+    width: 100%;
+}
+
+.switcher {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.switcher-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: rgba(180, 180, 180, 0.5);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.switcher-btn:hover {
+    background-color: rgba(180, 180, 180, 0.7);
+}
+
+.switcher-btn.active {
+    background-color: rgb(100, 100, 255);
+    color: white;
+}
