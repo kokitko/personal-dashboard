@@ -1,9 +1,15 @@
 import React from 'react';
-import './App.css';
+import './styles.css';
+
+import Header from './components/Header';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
-    <span>Hello World!</span>
+    <div className='main-container'>
+      <Header />
+      <Dashboard />
+    </div>
   );
 }
 
