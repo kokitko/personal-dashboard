@@ -1,8 +1,6 @@
 .weather-board {
-    min-width: 500px;
-    min-height: 400px;
-    width: 50vw;
-    height: 70vh;
+    width: 450px;
+    height: 400px;
 }
 
 .weather-search {
@@ -30,3 +28,62 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+.weather-info {
+    text-align: center;
+}
+
+.weather-info-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.weather-info-city {
+    font-size: 28px;
+    margin: 0;
+}
+
+.weather-info-img-container {
+    background-color: rgba(200, 200, 200, 0.5);
+    border-radius: 30%;
+    width: 60px;
+    height: 60px;
+}
+
+.weather-info-img {
+    width: 100%;
+    height: 100%;
+}
+
+.stat-weather-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.main-weather-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weather-temp,
+.weather-feels-like,
+.weather-humidity,
+.pressure,
+.weather-main,
+.weather-wind-speed {
+    font-size: 18px;
+}
+
+.weather-error {
+    color: red;
+    font-size: 32px;
+    margin-top: 10px;
+    text-align: center;
+}
+

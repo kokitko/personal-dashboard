@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './elements.css'
 
 import { LocationData, WeatherData, fetchLocation, fetchWeather } from '../agents/weatherAgent';
-                    
+
 const apiKey: string = "placeholder for apikey";
 
 const WeatherBoard = () => {
@@ -27,7 +27,6 @@ const WeatherBoard = () => {
                 setCityData(location);
 
                 const weather: WeatherData = await fetchWeather(location.lat, location.lon, apiKey);
-                console.log(weather);
                 setWeatherData(weather);
             } else {
                 setError("City not found");
@@ -60,12 +59,30 @@ const WeatherBoard = () => {
                     {loading ? "Loading..." : "Search"}
                 </button>
             </form>
-            {error && <p className="error">{error}</p>}
              
-            {weatherData && cityData && (
+            {weatherData && cityData && (error === "" || error === undefined) ? (
                 <div className="weather-info">
+                    <div className="weather-info-header">
+                        <h2 className="weather-info-city">{cityData.name}, {cityData.country}</h2>
+                        <div className="weather-info-img-container">
+                            <img
+                                src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                                className="weather-info-img" 
+                                alt="weather icon" />
+                        </div>
+                    </div>
+                    <div className="stat-weather-container">
+                        <span className="weather-temp">Temperature: {weatherData.main.temp} °C</span>
+                        <span className="weather-feels-like">Feels like: {weatherData.main.feels_like} °C</span>
+                        <span className="weather-humidity">Humidity: {weatherData.main.humidity}% </span>
+                        <span className="pressure">Pressure: {weatherData.main.pressure}</span>
+                    </div>
+                    <div className="main-weather-container">
+                        <span className="weather-main">Condition: {weatherData.weather[0].main} ({weatherData.weather[0].description})</span>
+                        <span className="weather-wind-speed">Wind Speed: {weatherData.wind.speed} m/s</span>
+                    </div>
                 </div>
-            )}
+            ) : <p className="weather-error">{error}</p>}
         </div>
     </div>);
 }
