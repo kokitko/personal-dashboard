@@ -3,6 +3,7 @@ import { TabType, tabs } from '../switcher/Tabs'
 import '../styles.css'
 
 import WeatherBoard from './dashboard-elements/WeatherBoard'
+import CryptoBoard from './dashboard-elements/CryptoBoard'
 
 interface Props {
     dashboardState: TabType;
@@ -15,7 +16,7 @@ const Dashboard = ({dashboardState}: Props) => {
             case 'weather':
                 return <WeatherBoard />;
             case 'crypto':
-                return undefined;
+                return <CryptoBoard />;
             case 'todo':
                 return undefined;
             case 'currency':

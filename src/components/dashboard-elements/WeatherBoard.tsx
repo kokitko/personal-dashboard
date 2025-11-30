@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './elements.css'
 
 import { LocationData, WeatherData, fetchLocation, fetchWeather } from '../agents/weatherAgent';
-
-const apiKey: string = "placeholder for apikey";
+import { weatherKey } from '../../keys'
 
 const WeatherBoard = () => {
 
@@ -19,14 +18,14 @@ const WeatherBoard = () => {
         setError("");
 
         try {
-            const locations: LocationData[] = await fetchLocation(city, apiKey);
+            const locations: LocationData[] = await fetchLocation(city, weatherKey);
 
             if (locations && locations.length > 0) {
                 const location: LocationData = locations[0];
 
                 setCityData(location);
 
-                const weather: WeatherData = await fetchWeather(location.lat, location.lon, apiKey);
+                const weather: WeatherData = await fetchWeather(location.lat, location.lon, weatherKey);
                 setWeatherData(weather);
             } else {
                 setError("City not found");
