@@ -23,8 +23,13 @@ const CryptoBoard = () => {
                 setLoading(false);
             }
         };
-        getCryptoData();
-    }, []);
+
+        const interval = setInterval(() => {
+            getCryptoData();
+        }, 60000);
+    
+        return () => clearInterval(interval);
+    });
 
     return(<div className="crypto-board">{!loading &&error ? (
         <div className="crypto-error">{error}</div>
