@@ -1,11 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './elements.css'
 
+import { fetchCrypto, CryptoData } from '../agents/cryptoAgent';
 import { cryptoKey } from '../../keys'
 
 const CryptoBoard = () => {
-    return(<div className="crypto-board">
+    const [cryptoData, setCryptoData] = useState<CryptoData | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
+    useEffect(() => {
+        const getCryptoData = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const data: CryptoData = await fetchCrypto(cryptoKey);
+                setCryptoData(data);
+            } catch (err) {
+                setError("Failed to fetch crypto data");
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        getCryptoData();
+    }, []);
+
+    return(<div className="crypto-board">{!loading &&error ? (
+        <div className="crypto-error">{error}</div>
+    ) : !cryptoData ? (
+        <div className="crypto-loading">Loading...</div>
+    ) : (
+        <>
+            <h3>Crypto cost for {new Date().toLocaleString()}</h3>
+            <div className="crypto-board-content">
+                <div className="crypto-item">
+                    <span>Bitcoin (BTC): </span>
+                    <span>${loading ? 'Loading...' : cryptoData.bitcoin.usd.toFixed(2)}</span>
+                </div>
+                <div className="crypto-item">
+                    <span>Ethereum (ETH): </span>
+                    <span>${loading ? 'Loading...' : cryptoData.ethereum.usd.toFixed(2)}</span>
+                </div>
+                <div className="crypto-item">
+                    <span>Binance Coin (BNB): </span>
+                    <span>${loading ? 'Loading...' : cryptoData.binancecoin.usd.toFixed(2)}</span>
+                </div>
+                <div className="crypto-item">
+                    <span>The Open Network (TON): </span>
+                    <span>${loading ? 'Loading...' : cryptoData['the-open-network'].usd.toFixed(2)}</span>
+                </div>
+                <div className="crypto-item">
+                    <span>Dogecoin (DOGE): </span>
+                    <span>${loading ? 'Loading...' : cryptoData.dogecoin.usd.toFixed(4)}</span>
+                </div>
+            </div>
+        </>)}
     </div>);
 }
 

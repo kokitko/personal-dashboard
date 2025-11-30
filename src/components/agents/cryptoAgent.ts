@@ -10,7 +10,7 @@ export interface CryptoData {
     binancecoin: {
         usd: number;
     }
-    ton: {
+    "the-open-network": {
         usd: number;
     }
     dogecoin: {
@@ -25,6 +25,7 @@ export const fetchCrypto = async (apiKey: string) => {
             throw new Error(`HTTP error. status ${response.status}`);
         }
         const data: CryptoData = await response.json();
+        console.log(data);
         return data
     } catch (error) {
         console.error('Error while fetching crypto:', error);

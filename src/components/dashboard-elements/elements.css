@@ -87,3 +87,23 @@
     text-align: center;
 }
 
+.crypto-board {
+    width: 450px;
+    height: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.crypto-board-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.crypto-item {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
