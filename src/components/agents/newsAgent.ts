@@ -17,7 +17,7 @@ export interface NewsData {
     articles: Array<Article>;
 }
 
-const fetchNews = async (keywords: string, apiKey: string) => {
+export const fetchNews = async (keywords: string, apiKey: string) => {
     try {
         const response = await fetch(`${newsApi}?q=${keywords}&apiKey=${apiKey}`);
         if (!response.ok) {
