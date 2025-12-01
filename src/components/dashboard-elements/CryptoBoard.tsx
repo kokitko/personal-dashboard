@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './elements.css'
 
 import { fetchCrypto, CryptoData } from '../agents/cryptoAgent';
-import { cryptoKey } from '../../keys'
 
 const CryptoBoard = () => {
     const [cryptoData, setCryptoData] = useState<CryptoData | null>(null);
@@ -14,7 +13,7 @@ const CryptoBoard = () => {
             setLoading(true);
             setError(null);
             try {
-                const data: CryptoData = await fetchCrypto(cryptoKey);
+                const data: CryptoData = await fetchCrypto();
                 setCryptoData(data);
             } catch (err) {
                 setError("Failed to fetch crypto data");

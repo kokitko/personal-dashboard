@@ -18,7 +18,8 @@ export interface CryptoData {
     }
 }
 
-export const fetchCrypto = async (apiKey: string) => {
+export const fetchCrypto = async () => {
+    const apiKey = process.env.REACT_APP_CRYPTO_API_KEY;
     try {
         const response = await fetch(`${cryptoApi}?x_cg_demo_api_key=${apiKey}&vs_currencies=usd&ids=bitcoin,ethereum,binancecoin,the-open-network,dogecoin`);
         if (!response.ok) {

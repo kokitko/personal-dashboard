@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './elements.css'
-import { newsKey } from '../../keys'
 
 import { NewsData, Article, fetchNews } from '../agents/newsAgent';
 
@@ -14,7 +13,7 @@ const NewsBoard = () => {
         setLoading(true);
         setError("");
         try {
-            const data: NewsData = await fetchNews(keywords, newsKey);
+            const data: NewsData = await fetchNews(keywords);
             setNewsData(data);
         } catch (err) {
             setError("Failed to fetch news data");

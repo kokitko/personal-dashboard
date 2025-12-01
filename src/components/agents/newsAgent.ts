@@ -17,7 +17,8 @@ export interface NewsData {
     articles: Array<Article>;
 }
 
-export const fetchNews = async (keywords: string, apiKey: string) => {
+export const fetchNews = async (keywords: string) => {
+    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
     try {
         const response = await fetch(`${newsApi}?q=${keywords}&apiKey=${apiKey}`);
         if (!response.ok) {

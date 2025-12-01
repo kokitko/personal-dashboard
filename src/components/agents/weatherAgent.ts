@@ -27,7 +27,9 @@ export interface WeatherData {
     }
 }
 
-export const fetchLocation = async (city: string, apiKey: string) => {
+const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+
+export const fetchLocation = async (city: string) => {
     try {
         const response = await fetch(`${locationApi}?q=${city}&appid=${apiKey}`);
         if (!response.ok) {
@@ -41,7 +43,7 @@ export const fetchLocation = async (city: string, apiKey: string) => {
     }
 };
 
-export const fetchWeather = async (lat: number, lon: number, apiKey: string) => {
+export const fetchWeather = async (lat: number, lon: number) => {
     try {
         const response = await fetch(`${weatherApi}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
         if (!response.ok) {
