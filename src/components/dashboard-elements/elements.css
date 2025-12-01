@@ -174,3 +174,42 @@
     font-size: 14px;
 }
 
+.currency-board {
+    width: 450px;
+    height: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.currency-data {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.currency-data-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.currency-data-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.currency-item {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.currency-error {
+    color: red;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}

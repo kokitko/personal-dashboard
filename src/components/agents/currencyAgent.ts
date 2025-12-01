@@ -7,6 +7,8 @@ export interface CurrencyData {
         pln: number;
         cad: number;
         czk: number;
+        uah: number;
+        rub: number;
     }
 }
 

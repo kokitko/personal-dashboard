@@ -5,6 +5,7 @@ import '../styles.css'
 import WeatherBoard from './dashboard-elements/WeatherBoard'
 import CryptoBoard from './dashboard-elements/CryptoBoard'
 import TodoBoard from './dashboard-elements/TodoBoard'
+import CurrencyBoard from './dashboard-elements/CurrencyBoard'
 
 interface Props {
     dashboardState: TabType;
@@ -21,7 +22,7 @@ const Dashboard = ({dashboardState}: Props) => {
             case 'todo':
                 return <TodoBoard />;
             case 'currency':
-                return undefined;
+                return <CurrencyBoard />;
             case 'news':
                 return undefined; 
         }
