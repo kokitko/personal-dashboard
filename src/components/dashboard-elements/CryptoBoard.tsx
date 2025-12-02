@@ -30,9 +30,9 @@ const CryptoBoard = () => {
         return () => clearInterval(interval);
     });
 
-    return(<div className="crypto-board">{!loading &&error ? (
+    return(<div className="crypto-board">{error ? (
         <div className="crypto-error">{error}</div>
-    ) : !cryptoData ? (
+    ) : loading ? (
         <div className="crypto-loading">Loading...</div>
     ) : (
         <>
