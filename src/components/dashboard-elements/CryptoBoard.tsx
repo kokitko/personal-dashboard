@@ -34,8 +34,7 @@ const CryptoBoard = () => {
         <div className="crypto-error">{error}</div>
     ) : loading ? (
         <div className="crypto-loading">Loading...</div>
-    ) : (
-        <>
+    ) : (cryptoData && (
             <h3>Crypto cost for {new Date().toLocaleString()}</h3>
             <div className="crypto-board-content">
                 <div className="crypto-item">
@@ -59,7 +58,7 @@ const CryptoBoard = () => {
                     <span>${loading ? 'Loading...' : cryptoData.dogecoin.usd.toFixed(4)}</span>
                 </div>
             </div>
-        </>)}
+        ))}
     </div>);
 }
 
