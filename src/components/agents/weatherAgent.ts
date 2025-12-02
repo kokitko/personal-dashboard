@@ -31,6 +31,7 @@ const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
 export const fetchLocation = async (city: string) => {
     try {
+        console.log(apiKey);
         const response = await fetch(`${locationApi}?q=${city}&appid=${apiKey}`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
@@ -45,6 +46,7 @@ export const fetchLocation = async (city: string) => {
 
 export const fetchWeather = async (lat: number, lon: number) => {
     try {
+        console.log(apiKey);
         const response = await fetch(`${weatherApi}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
