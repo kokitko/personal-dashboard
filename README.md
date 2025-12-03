@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# Personal Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+A personal dashboard designed to provide quick access to weather data, cryptocurrency prices, currency exchange rates, news, and a simple todo list - all in one place.
+The project was created both for practical daily use and as a way to improve my skills in React, using TypeScript.
 
-In the project directory, you can run:
+## 📌 Features
 
-### `npm start`
+### Weather Board
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - Displays current weather conditions in chosen city
+ - Powered by OpenWeatherMap API
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Crypto Board
 
-### `npm test`
+ - Shows real-time cryptocurrency prices (btc, eth, bnb, ton, doge)
+ - Powered by CoinGecko API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Currency Board
 
-### `npm run build`
+ - Displays exchange rates for 100 USD in different currencies
+ - Powered by fawazahmed0/exchange-api
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### News Board
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ - Fetches news based on user-defined keywords
+ - Uses NewsAPI (note: direct frontend requests are restricted, so this module is incomplete)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Todo Board
 
-### `npm run eject`
+ - Simple todo list
+ - Stored in localStorage (no backend)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🛠 Tech Stack
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ - React
+ - TypeScript
+ - No backend (fully client-side)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📱 Responsiveness
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The current layout is optimized for desktop usage.
+Mobile and tablet support is planned for future improvement.
 
-## Learn More
+## 🚧 Deployment Status
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The project is <b>not deployed yet</b>.
+Attempts were made using Vercel, but NewsAPI does not allow client-side requests from the browser, and the project was not designed with a backend layer.
+A dedicated backend or serverless function would be required for full deployment.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🖼 Screenshots
+
+<img width="1919" height="903" alt="image" src="https://github.com/user-attachments/assets/01f24797-a236-49ba-baa2-f05fcf38757a" />
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/3693fbb0-bb84-43c3-9c0f-10079ccd18a9" />
+<img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/ba23737b-3ce0-4e9e-bdf0-742819cabb6c" />
+
+## 📄 License
+
+This is a personal learning project and does not currently include a formal license.
+
+
+ 
