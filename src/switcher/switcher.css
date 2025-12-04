@@ -27,3 +27,19 @@
     background-color: rgb(100, 100, 255);
     color: white;
 }
+
+@media (max-width: 767px) {
+    .switcher {
+        justify-content: center;
+    }
+
+    .switcher-btn {
+        flex: 1 1 calc(50% - 10px);
+        font-size: 12px;
+    }
+
+    .dashboard {
+        width: 90%;
+        padding: 15px;
+    }
+}

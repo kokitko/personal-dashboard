@@ -63,7 +63,7 @@ header {
     padding: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     header {
         width: 80%;
         font-size: 14px;
