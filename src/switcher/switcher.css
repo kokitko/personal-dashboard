@@ -43,3 +43,17 @@
         padding: 15px;
     }
 }
+
+/* Landscape phone */
+@media (max-width: 896px) and (orientation: landscape) {
+    .switcher {
+        gap: 5px;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+
+    .switcher-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}

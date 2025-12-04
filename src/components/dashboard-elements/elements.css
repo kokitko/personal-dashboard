@@ -308,3 +308,81 @@
     }
 }
 
+/* Landscape phone */
+@media (max-width: 896px) and (orientation: landscape) {
+    .weather-board,
+    .crypto-board,
+    .todo-board,
+    .currency-board,
+    .news-board {
+        width: 100%;
+        height: 75vh;
+        max-height: 75vh;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .news-board {
+        height: 75vh;
+    }
+
+    .weather-search input,
+    .todo-input,
+    .news-input {
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .weather-search-btn,
+    .todo-add-btn,
+    .news-search-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+        margin-left: 5px;
+    }
+
+    .weather-info-city {
+        font-size: 20px;
+    }
+
+    .weather-info-img-container {
+        width: 45px;
+        height: 45px;
+    }
+
+    .weather-temp,
+    .weather-feels-like,
+    .weather-humidity,
+    .pressure,
+    .weather-main,
+    .weather-wind-speed {
+        font-size: 15px;
+    }
+
+    .crypto-item,
+    .currency-item {
+        font-size: 15px;
+    }
+
+    .news-articles {
+        max-height: calc(75vh - 80px);
+    }
+
+    .news-article-title {
+        font-size: 15px;
+    }
+
+    .news-article-description {
+        font-size: 14px;
+    }
+
+    .todo-list {
+        max-height: calc(75vh - 100px);
+    }
+
+    .todo-item {
+        padding: 6px;
+        font-size: 14px;
+    }
+}
+

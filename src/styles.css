@@ -69,3 +69,38 @@ header {
         font-size: 14px;
     }
 }
+
+/* Landscape phone */
+@media (max-width: 896px) and (orientation: landscape) {
+    header {
+        width: 250px;
+        height: 35px;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .main-container {
+        padding: 5px;
+    }
+
+    .dashboard {
+        width: 98%;
+        max-height: 90vh;
+        padding: 10px;
+        overflow-y: auto;
+    }
+}
+
+@media (min-width: 480px) {
+    .dashboard {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dashboard-element {
+        margin: 10px;
+    }
+
+    
+}
