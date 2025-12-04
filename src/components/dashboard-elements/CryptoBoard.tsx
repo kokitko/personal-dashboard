@@ -30,36 +30,37 @@ const CryptoBoard = () => {
         return () => clearInterval(interval);
     });
 
-    return(<div className="crypto-board">{!loading &&error ? (
-        <div className="crypto-error">{error}</div>
-    ) : !cryptoData ? (
+    return(<div className="crypto-board">{loading ? (
         <div className="crypto-loading">Loading...</div>
-    ) : (
+    ) : error ? (
+        <div className="crypto-error">{error}</div>
+    ) : (cryptoData && (
         <>
             <h3>Crypto cost for {new Date().toLocaleString()}</h3>
             <div className="crypto-board-content">
                 <div className="crypto-item">
                     <span>Bitcoin (BTC): </span>
-                    <span>${loading ? 'Loading...' : cryptoData.bitcoin.usd.toFixed(2)}</span>
+                    <span>${cryptoData.bitcoin.usd.toFixed(2)}</span>
                 </div>
                 <div className="crypto-item">
                     <span>Ethereum (ETH): </span>
-                    <span>${loading ? 'Loading...' : cryptoData.ethereum.usd.toFixed(2)}</span>
+                    <span>${cryptoData.ethereum.usd.toFixed(2)}</span>
                 </div>
                 <div className="crypto-item">
                     <span>Binance Coin (BNB): </span>
-                    <span>${loading ? 'Loading...' : cryptoData.binancecoin.usd.toFixed(2)}</span>
+                    <span>${cryptoData.binancecoin.usd.toFixed(2)}</span>
                 </div>
                 <div className="crypto-item">
                     <span>The Open Network (TON): </span>
-                    <span>${loading ? 'Loading...' : cryptoData['the-open-network'].usd.toFixed(2)}</span>
+                    <span>${cryptoData['the-open-network'].usd.toFixed(2)}</span>
                 </div>
                 <div className="crypto-item">
                     <span>Dogecoin (DOGE): </span>
-                    <span>${loading ? 'Loading...' : cryptoData.dogecoin.usd.toFixed(4)}</span>
+                    <span>${cryptoData.dogecoin.usd.toFixed(4)}</span>
                 </div>
             </div>
-        </>)}
+        </>
+        ))}
     </div>);
 }
 

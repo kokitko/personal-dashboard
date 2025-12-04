@@ -1,5 +1,5 @@
 const weatherApi: string = "https://api.openweathermap.org/data/2.5/weather"
-const locationApi: string = "http://api.openweathermap.org/geo/1.0/direct"
+const locationApi: string = "https://api.openweathermap.org/geo/1.0/direct"
 
 export interface LocationData {
     name: string;
