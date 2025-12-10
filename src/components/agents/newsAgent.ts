@@ -1,4 +1,3 @@
-const newsApi: string = "https://newsapi.org/v2/everything"
 
 export interface Article {
     source: {
@@ -17,10 +16,11 @@ export interface NewsData {
     articles: Array<Article>;
 }
 
+const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
+
 export const fetchNews = async (keywords: string) => {
-    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
     try {
-        const response = await fetch(`${newsApi}?q=${keywords}&apiKey=${apiKey}`);
+        const response = await fetch(`${backendApi}/news?keywords=${keywords}`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
         }

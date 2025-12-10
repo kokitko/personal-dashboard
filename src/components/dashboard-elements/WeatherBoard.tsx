@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './elements.css'
 
-import { LocationData, WeatherData, fetchLocation, fetchWeather } from '../agents/weatherAgent';
+import { WeatherData, fetchWeather } from '../agents/weatherAgent';
 
 const WeatherBoard = () => {
 
-    const [city, setCity] = useState<string>("Tokyo");
+    const [city, setCity] = useState<string>("Warsaw");
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-    const [cityData, setCityData] = useState<LocationData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>();
 
@@ -17,18 +16,8 @@ const WeatherBoard = () => {
         setError("");
 
         try {
-            const locations: LocationData[] = await fetchLocation(city);
-
-            if (locations && locations.length > 0) {
-                const location: LocationData = locations[0];
-
-                setCityData(location);
-
-                const weather: WeatherData = await fetchWeather(location.lat, location.lon);
-                setWeatherData(weather);
-            } else {
-                setError("City not found");
-            }
+            const weather: WeatherData = await fetchWeather(city);
+            setWeatherData(weather);
         } catch (err) {
             setError("Failed to fetch weather data");
             console.error(err);
@@ -58,10 +47,10 @@ const WeatherBoard = () => {
                 </button>
             </form>
              
-            {weatherData && cityData && (error === "" || error === undefined) ? (
+            {weatherData && (error === "" || error === undefined) ? (
                 <div className="weather-info">
                     <div className="weather-info-header">
-                        <h2 className="weather-info-city">{cityData.name}, {cityData.country}</h2>
+                        <h2 className="weather-info-city">{weatherData.name}, {weatherData.sys.country}</h2>
                         <div className="weather-info-img-container">
                             <img
                                 src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}

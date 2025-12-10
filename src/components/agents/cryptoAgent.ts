@@ -1,5 +1,3 @@
-const cryptoApi: string = "https://api.coingecko.com/api/v3/simple/price"
-
 export interface CryptoData {
     bitcoin: {
         usd: number;
@@ -18,10 +16,11 @@ export interface CryptoData {
     }
 }
 
+const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
+
 export const fetchCrypto = async () => {
-    const apiKey = process.env.REACT_APP_CRYPTO_API_KEY;
     try {
-        const response = await fetch(`${cryptoApi}?x_cg_demo_api_key=${apiKey}&vs_currencies=usd&ids=bitcoin,ethereum,binancecoin,the-open-network,dogecoin`);
+        const response = await fetch(`${backendApi}/crypto`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
         }
