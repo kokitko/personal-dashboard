@@ -1,25 +1,18 @@
 export interface CryptoData {
-    bitcoin: {
-        usd: number;
-    }
-    ethereum: {
-        usd: number;
-    }
-    binancecoin: {
-        usd: number;
-    }
-    "the-open-network": {
-        usd: number;
-    }
-    dogecoin: {
-        usd: number;
-    }
+    date: string;
+    usd: {
+        btc: number;
+        bnb: number;
+        doge: number;
+        eth: number;
+    };
 }
 
 const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchCrypto = async () => {
     try {
+        console.log("Fetching crypto")
         const response = await fetch(`${backendApi}/crypto`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);

@@ -22,13 +22,9 @@ const CryptoBoard = () => {
                 setLoading(false);
             }
         };
-
-        const interval = setInterval(() => {
-            getCryptoData();
-        }, 60000);
-    
-        return () => clearInterval(interval);
-    });
+        
+        getCryptoData();
+    }, []);
 
     return(<div className="crypto-board">{loading ? (
         <div className="crypto-loading">Loading...</div>
@@ -36,27 +32,23 @@ const CryptoBoard = () => {
         <div className="crypto-error">{error}</div>
     ) : (cryptoData && (
         <>
-            <h3>Crypto cost for {new Date().toLocaleString()}</h3>
+            <h3>Crypto cost for {cryptoData.date}</h3>
             <div className="crypto-board-content">
                 <div className="crypto-item">
                     <span>Bitcoin (BTC): </span>
-                    <span>${cryptoData.bitcoin.usd.toFixed(2)}</span>
+                    <span>${(1 / cryptoData.usd.btc).toFixed(2)}</span>
                 </div>
                 <div className="crypto-item">
                     <span>Ethereum (ETH): </span>
-                    <span>${cryptoData.ethereum.usd.toFixed(2)}</span>
+                    <span>${(1 / cryptoData.usd.eth).toFixed(2)}</span>
                 </div>
                 <div className="crypto-item">
                     <span>Binance Coin (BNB): </span>
-                    <span>${cryptoData.binancecoin.usd.toFixed(2)}</span>
-                </div>
-                <div className="crypto-item">
-                    <span>The Open Network (TON): </span>
-                    <span>${cryptoData['the-open-network'].usd.toFixed(2)}</span>
+                    <span>${(1 / cryptoData.usd.bnb).toFixed(2)}</span>
                 </div>
                 <div className="crypto-item">
                     <span>Dogecoin (DOGE): </span>
-                    <span>${cryptoData.dogecoin.usd.toFixed(4)}</span>
+                    <span>${(1 / cryptoData.usd.doge).toFixed(4)}</span>
                 </div>
             </div>
         </>
