@@ -4,3 +4,7 @@ export interface Todo {
     userId: string;
     _id: string;
 }
+
+export interface RawTodo {
+    text: string;
+}

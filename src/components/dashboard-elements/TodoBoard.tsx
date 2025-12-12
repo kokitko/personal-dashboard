@@ -5,7 +5,7 @@ import { Todo } from './dashboard-items/Todo';
 import TodoItem from '../dashboard-elements/dashboard-items/TodoItem';
 
 import { logout } from '../../auth/authService';
-import { fetchTodos } from '../agents/todoAgent';
+import { fetchTodos, addTodo, toggleCompleteTodo, deleteTodo } from '../agents/todoAgent';
 
 const TodoBoard = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -20,36 +20,44 @@ const TodoBoard = () => {
         }
     };
 
+    const handleAddTodo = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (newTodo.trim() === "") return;
+        try {
+            const addedTodo = await addTodo({ text: newTodo });
+            if (!addedTodo) return;
+            setTodos([...todos, addedTodo]);
+            setNewTodo("");
+        } catch (error) {
+            console.error("Failed to add todo:", error);
+        }
+    };
+
+    const handleCompleteTodo = (_id: string) => {
+        toggleCompleteTodo(_id)
+            .then(() => {
+                setTodos(todos.map(todo =>
+                    todo._id === _id ? { ...todo, completed: !todo.completed } : todo
+                ));
+            })
+            .catch(error => {
+                console.error("Failed to toggle todo completion:", error);
+            });
+    }
+
+    const handleDeleteTodo = (_id: string) => {
+        deleteTodo(_id)
+            .then(() => {
+                setTodos(todos.filter(todo => todo._id !== _id));
+            })
+            .catch(error => {
+                console.error("Failed to delete todo:", error);
+            });
+    }
+
     useEffect(() => {
         loadTodos();
     }, []);
-
-    const addTodo = () => {
-        if (newTodo.trim() === "") return;
-        const newTodoItem: Todo = {
-            text: newTodo,
-            completed: false,
-            userId: "",
-            _id: ""
-        };
-        setTodos([...todos, newTodoItem]);
-        setNewTodo("");
-    };
-
-    const handleAddTodo = (e: React.FormEvent) => {
-        e.preventDefault();
-        addTodo();
-    }
-
-    const completeTodo = (_id: string) => {
-        setTodos(todos.map(todo =>
-            todo._id === _id ? { ...todo, completed: !todo.completed } : todo
-        ));
-    }
-
-    const deleteTodo = (_id: string) => {
-        setTodos(todos.filter(todo => todo._id !== _id));
-    }
 
     const handleLogout = () => {
         logout();
@@ -57,7 +65,7 @@ const TodoBoard = () => {
     }
 
     return (<div className="todo-board">
-        <form className="todo-form" onSubmit={handleAddTodo}>
+        <form className="todo-form" onSubmit={(e) => handleAddTodo(e)}>
             <input 
                 type="text"
                 value={newTodo}
@@ -68,7 +76,7 @@ const TodoBoard = () => {
         </form>
         <div className="todo-list">
             {todos.map(todo => (
-                <TodoItem key={todo._id} todo={todo} deleteTodo={deleteTodo} completeTodo={completeTodo} />
+                <TodoItem key={todo._id} todo={todo} deleteTodo={handleDeleteTodo} completeTodo={handleCompleteTodo} />
             ))}
         </div>
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
