@@ -20,7 +20,7 @@ export const register = async (email: string, username: string, password: string
     }
 }
 
-export const login = async (username: string, password: string) => {
+export const login = async (email: string, password: string) => {
     try {
         const response = await fetch(`${backendApi}/login`, {
             method: 'POST',
@@ -28,7 +28,7 @@ export const login = async (username: string, password: string) => {
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ email, password }),
         });
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

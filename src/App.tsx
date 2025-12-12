@@ -5,6 +5,7 @@ import { TabType } from './switcher/Tabs';
 import Header from './components/Header';
 import DashboardSwitcher from './switcher/DashboardSwitcher'
 import Dashboard from './components/Dashboard';
+import { AuthProvider } from './auth/AuthContext';
 
 function App() {
   const [dashboardState, setDashboardState] = useState<TabType>("weather");
@@ -13,7 +14,9 @@ function App() {
     <div className='main-container'>
       <Header />
       <DashboardSwitcher dashboardState={dashboardState} setDashboardState={setDashboardState} />
-      <Dashboard dashboardState={dashboardState} />
+      <AuthProvider>
+        <Dashboard dashboardState={dashboardState} />
+      </AuthProvider>
     </div>
   );
 }

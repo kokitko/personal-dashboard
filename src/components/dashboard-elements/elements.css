@@ -283,6 +283,59 @@
     word-break: break-word;
 }
 
+.register-board {
+    width: 400px;
+    height: 350px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.register-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.register-submit-btn {
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    background-color: rgb(100, 100, 255);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.register-board-header {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.switch-form-btn {
+    background: none;
+    border: none;
+    color: rgb(100, 100, 255);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 16px;
+    padding: 0;
+}
+
 @media (max-width: 500px) {
     .weather-board,
     .crypto-board,
