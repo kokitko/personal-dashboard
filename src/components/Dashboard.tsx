@@ -24,7 +24,6 @@ const Dashboard = ({dashboardState}: Props) => {
             case 'crypto':
                 return <CryptoBoard />;
             case 'todo':
-                console.log("Auth status:", isAuthenticated, "Ready status:", ready);
                 if (!ready) {
                     return <div className='dashboard'>Loading...</div>;
                 } else if (!isAuthenticated) {
