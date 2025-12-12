@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { register, login } from '../../auth/authService';
+import { useAuth } from '../../auth/AuthContext';
 import './elements.css';
 
 const RegisterBoard = () => {
@@ -8,6 +9,7 @@ const RegisterBoard = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { setIsAuthenticated } = useAuth();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,12 +20,11 @@ const RegisterBoard = () => {
                 await register(email, username, password);
             } else {
                 await login(email, password);
+                setIsAuthenticated(true);
             }
         } catch (err) {
             setError('Something went wrong. Please try again.');
         }
-        await new Promise(resolve => setTimeout(resolve, 500));
-        window.location.reload();
     };
 
     return (
