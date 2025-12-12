@@ -20,7 +20,7 @@ const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchNews = async (keywords: string) => {
     try {
-        const response = await fetch(`${backendApi}/news?keywords=${keywords}`);
+        const response = await fetch(`${backendApi}/api/news?keywords=${keywords}`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
         }

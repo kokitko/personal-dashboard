@@ -26,7 +26,7 @@ const backendApi = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchWeather = async (city: string) => {
     try {
-        const response = await fetch(`${backendApi}/weather?city=${city}`);
+        const response = await fetch(`${backendApi}/api/weather?city=${city}`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
         }

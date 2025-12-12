@@ -14,7 +14,7 @@ const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchCurrency = async () => {
     try {
-        const response = await fetch(`${backendApi}/currency`);
+        const response = await fetch(`${backendApi}/api/currency`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
         }

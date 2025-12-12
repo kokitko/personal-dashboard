@@ -12,7 +12,7 @@ const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchCrypto = async () => {
     try {
-        const response = await fetch(`${backendApi}/crypto`);
+        const response = await fetch(`${backendApi}/api/crypto`);
         if (!response.ok) {
             throw new Error(`HTTP error. status ${response.status}`);
         }

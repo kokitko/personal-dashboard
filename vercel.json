@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      
+      "destination": "https://kokitko-dashboard.api.vercel.app/api/$1" 
+    }
+  ]
+}

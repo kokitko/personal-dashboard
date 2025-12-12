@@ -64,7 +64,7 @@ export const toggleCompleteTodo = async (_id: string): Promise<void> => {
 
 export const deleteTodo = async (_id: string): Promise<void> => {
     try {
-        const response = await fetch(`${backendApi}/todo/${_id}`, {
+        const response = await fetch(`${backendApi}/api/todo/${_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
