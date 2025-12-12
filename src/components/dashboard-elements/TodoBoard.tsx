@@ -4,6 +4,8 @@ import './elements.css'
 import { Todo } from './dashboard-items/Todo';
 import TodoItem from '../dashboard-elements/dashboard-items/TodoItem';
 
+import { logout } from '../../auth/authService';
+
 const TodoBoard = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [newTodo, setNewTodo] = useState<string>("");
@@ -34,6 +36,11 @@ const TodoBoard = () => {
         setTodos(todos.filter(todo => todo.id !== id));
     }
 
+    const handleLogout = () => {
+        logout();
+        window.location.reload();
+    }
+
     return (<div className="todo-board">
         <form className="todo-form" onSubmit={handleAddTodo}>
             <input 
@@ -49,6 +56,7 @@ const TodoBoard = () => {
                 <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} completeTodo={completeTodo} />
             ))}
         </div>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
     </div>)
 }
 
