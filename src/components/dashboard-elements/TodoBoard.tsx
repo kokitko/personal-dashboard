@@ -1,21 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './elements.css'
 
 import { Todo } from './dashboard-items/Todo';
 import TodoItem from '../dashboard-elements/dashboard-items/TodoItem';
 
 import { logout } from '../../auth/authService';
+import { fetchTodos } from '../agents/todoAgent';
 
 const TodoBoard = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [newTodo, setNewTodo] = useState<string>("");
 
+    const loadTodos = async () => {
+        try {
+            const fetchedTodos = await fetchTodos();
+            setTodos(fetchedTodos);
+        } catch (error) {
+            console.error("Failed to load todos:", error);
+        }
+    };
+
+    useEffect(() => {
+        loadTodos();
+    }, []);
+
     const addTodo = () => {
         if (newTodo.trim() === "") return;
         const newTodoItem: Todo = {
-            id: Date.now(),
             text: newTodo,
             completed: false,
+            userId: "",
+            _id: ""
         };
         setTodos([...todos, newTodoItem]);
         setNewTodo("");
@@ -26,14 +41,14 @@ const TodoBoard = () => {
         addTodo();
     }
 
-    const completeTodo = (id: number) => {
+    const completeTodo = (_id: string) => {
         setTodos(todos.map(todo =>
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            todo._id === _id ? { ...todo, completed: !todo.completed } : todo
         ));
     }
 
-    const deleteTodo = (id: number) => {
-        setTodos(todos.filter(todo => todo.id !== id));
+    const deleteTodo = (_id: string) => {
+        setTodos(todos.filter(todo => todo._id !== _id));
     }
 
     const handleLogout = () => {
@@ -53,7 +68,7 @@ const TodoBoard = () => {
         </form>
         <div className="todo-list">
             {todos.map(todo => (
-                <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} completeTodo={completeTodo} />
+                <TodoItem key={todo._id} todo={todo} deleteTodo={deleteTodo} completeTodo={completeTodo} />
             ))}
         </div>
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
