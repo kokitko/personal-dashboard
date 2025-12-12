@@ -5,7 +5,7 @@ const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchTodos: () => Promise<Todo[]> = async () => {
     try {
-        const response = await fetch(`${backendApi}/todo`, {
+        const response = await fetch(`${backendApi}/api/todo`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export const fetchTodos: () => Promise<Todo[]> = async () => {
 
 export const addTodo: (todo: RawTodo) => Promise<Todo> = async (todo) => {
     try {
-        const response = await fetch(`${backendApi}/todo`, {
+        const response = await fetch(`${backendApi}/api/todo`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const addTodo: (todo: RawTodo) => Promise<Todo> = async (todo) => {
 
 export const toggleCompleteTodo = async (_id: string): Promise<void> => {
     try {
-        const response = await fetch(`${backendApi}/todo/${_id}/toggle`, {
+        const response = await fetch(`${backendApi}/api/todo/${_id}/toggle`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
