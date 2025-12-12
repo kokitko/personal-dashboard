@@ -3,7 +3,7 @@ let accessToken: string = "none";
 
 export const register = async (email: string, username: string, password: string) => {
     try {
-        const response = await fetch(`${backendApi}/register`, {
+        const response = await fetch(`${backendApi}/api/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ export const register = async (email: string, username: string, password: string
 
 export const login = async (email: string, password: string) => {
     try {
-        const response = await fetch(`${backendApi}/login`, {
+        const response = await fetch(`${backendApi}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const login = async (email: string, password: string) => {
 export const logout = async () => {
     accessToken = "none";
     localStorage.removeItem('accessToken');
-    const response = await fetch(`${backendApi}/logout`, {
+    const response = await fetch(`${backendApi}/api/logout`, {
         method: 'POST',
         credentials: 'include'
     });
@@ -62,7 +62,7 @@ export const getAccessToken = () => {
 
 export const refreshToken = async () => {
     try {
-        const response = await fetch(`${backendApi}/token`, {
+        const response = await fetch(`${backendApi}/api/token`, {
             method: 'POST',
             credentials: 'include'
         });
