@@ -1,3 +1,4 @@
+import axiosInstance from './axiosInstance';
 
 export interface Weather {
     description: string;
@@ -26,11 +27,11 @@ const backendApi = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchWeather = async (city: string) => {
     try {
-        const response = await fetch(`${backendApi}/api/weather?city=${city}`);
-        if (!response.ok) {
+        const response = await axiosInstance.get<WeatherData>(`/api/weather?city=${city}`);
+        if (response.status !== 200) {
             throw new Error(`HTTP error. status ${response.status}`);
         }
-        const data: WeatherData = await response.json();
+        const data: WeatherData = response.data;
         return data;
     } catch (error) {
         console.error('Error while fetching weather:', error);

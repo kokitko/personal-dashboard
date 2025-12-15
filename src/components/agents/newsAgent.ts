@@ -1,3 +1,4 @@
+import axiosInstance from './axiosInstance';
 
 export interface Article {
     source: {
@@ -20,11 +21,11 @@ const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
 
 export const fetchNews = async (keywords: string) => {
     try {
-        const response = await fetch(`${backendApi}/api/news?keywords=${keywords}`);
-        if (!response.ok) {
+        const response = await axiosInstance.get<NewsData>(`/api/news?keywords=${keywords}`);
+        if (response.status !== 200) {
             throw new Error(`HTTP error. status ${response.status}`);
         }
-        const data: NewsData = await response.json();
+        const data: NewsData = response.data;
         return data;
     } catch (error) {
         console.error('Error while fetching news:', error);
