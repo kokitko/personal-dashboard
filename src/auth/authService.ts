@@ -1,16 +1,14 @@
-const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
+import axiosInstance from "../components/agents/axiosInstance";
 let accessToken: string = "none";
 
 export const register = async (email: string, username: string, password: string) => {
     try {
-        const response = await fetch(`${backendApi}/api/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, username, password }),
+        const response = await axiosInstance.post('/api/register', {
+            email,
+            username,
+            password
         });
-        if (!response.ok) {
+        if (response.status !== 201) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response;
@@ -22,18 +20,14 @@ export const register = async (email: string, username: string, password: string
 
 export const login = async (email: string, password: string) => {
     try {
-        const response = await fetch(`${backendApi}/api/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({ email, password }),
+        const response = await axiosInstance.post('/api/login', {
+            email,
+            password
         });
-        if (!response.ok) {
+        if (response.status !== 200) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        accessToken = (await response.json()).accessToken;
+        accessToken = response.data.accessToken;
         localStorage.setItem('accessToken', accessToken);
         return response;
     }
@@ -46,10 +40,7 @@ export const login = async (email: string, password: string) => {
 export const logout = async () => {
     accessToken = "none";
     localStorage.removeItem('accessToken');
-    const response = await fetch(`${backendApi}/api/logout`, {
-        method: 'POST',
-        credentials: 'include'
-    });
+    const response = await axiosInstance.post('/api/logout');
     return response;
 }
 
@@ -58,24 +49,5 @@ export const getAccessToken = () => {
         accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken')! : "none";
     }
     return accessToken;
-}
-
-export const refreshToken = async () => {
-    try {
-        const response = await fetch(`${backendApi}/api/token`, {
-            method: 'POST',
-            credentials: 'include'
-        });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        accessToken = (await response.json()).accessToken;
-        localStorage.setItem('accessToken', accessToken);
-        return accessToken;
-    } catch (error) {
-        accessToken = "none";
-        localStorage.removeItem('accessToken');
-        throw error;
-    }
 }
 

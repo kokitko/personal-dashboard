@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { getAccessToken, refreshToken } from './authService';
+import { getAccessToken } from './authService';
 
 const AuthContext = createContext<{
                     isAuthenticated: boolean; 
@@ -18,12 +18,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 if (token === "none") {
                     setIsAuthenticated(false);
                     return;
-                }
-                const response = await refreshToken();
-                if (response) {
-                    setIsAuthenticated(true);
                 } else {
-                    setIsAuthenticated(false);
+                    setIsAuthenticated(true);
                 }
             } catch (error) {
                 setIsAuthenticated(false);
