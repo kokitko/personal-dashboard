@@ -23,8 +23,6 @@ export interface WeatherData {
     name: string;
 }
 
-const backendApi = process.env.REACT_APP_BACKEND_API_URL;
-
 export const fetchWeather = async (city: string) => {
     try {
         const response = await axiosInstance.get<WeatherData>(`/api/weather?city=${city}`);

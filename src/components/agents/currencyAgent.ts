@@ -12,8 +12,6 @@ export interface CurrencyData {
     }
 }
 
-const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
-
 export const fetchCurrency = async () => {
     try {
         const response = await axiosInstance.get<CurrencyData>('/api/currency');

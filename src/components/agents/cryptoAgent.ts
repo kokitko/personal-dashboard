@@ -10,8 +10,6 @@ export interface CryptoData {
     };
 }
 
-const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
-
 export const fetchCrypto = async () => {
     try {
         const response = await axiosInstance.get<CryptoData>('/api/crypto');

@@ -17,8 +17,6 @@ export interface NewsData {
     articles: Array<Article>;
 }
 
-const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
-
 export const fetchNews = async (keywords: string) => {
     try {
         const response = await axiosInstance.get<NewsData>(`/api/news?keywords=${keywords}`);

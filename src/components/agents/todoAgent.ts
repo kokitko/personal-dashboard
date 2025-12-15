@@ -1,21 +1,13 @@
-import { getAccessToken } from "../../auth/authService";
 import { RawTodo, Todo } from "../dashboard-elements/dashboard-items/Todo";
-
-const backendApi: string | undefined = process.env.REACT_APP_BACKEND_API_URL;
+import axiosInstance from "./axiosInstance";
 
 export const fetchTodos: () => Promise<Todo[]> = async () => {
     try {
-        const response = await fetch(`${backendApi}/api/todo`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': `Bearer ${getAccessToken()}`
-            }
-        });
-        if (!response.ok) {
+        const response = await axiosInstance.get<Array<Todo>>('/api/todo');
+        if (response.status !== 200) {
             throw new Error(`HTTP error. status ${response.status}`);
         }
-        const data: Array<Todo> = await response.json();
+        const data: Array<Todo> = response.data;
         return data;
     } catch (error) {
         console.error('Error while fetching todos:', error);
@@ -25,18 +17,11 @@ export const fetchTodos: () => Promise<Todo[]> = async () => {
 
 export const addTodo: (todo: RawTodo) => Promise<Todo> = async (todo) => {
     try {
-        const response = await fetch(`${backendApi}/api/todo`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': `Bearer ${getAccessToken()}`
-            },
-            body: JSON.stringify(todo)
-        });
-        if (!response.ok) {
+        const response = await axiosInstance.post<Todo>('/api/todo', todo);
+        if (response.status !== 201) {
             throw new Error(`HTTP error. status ${response.status}`);
         }
-        const data: Todo = await response.json();
+        const data: Todo = response.data;
         return data;
     } catch (error) {
         console.error('Error while adding todo:', error);
@@ -46,14 +31,8 @@ export const addTodo: (todo: RawTodo) => Promise<Todo> = async (todo) => {
 
 export const toggleCompleteTodo = async (_id: string): Promise<void> => {
     try {
-        const response = await fetch(`${backendApi}/api/todo/${_id}/toggle`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': `Bearer ${getAccessToken()}`
-            }
-        });
-        if (!response.ok) {
+        const response = await axiosInstance.put<void>(`/api/todo/${_id}/toggle`);
+        if (response.status !== 200) {
             throw new Error(`HTTP error. status ${response.status}`);
         }
     } catch (error) {
@@ -64,14 +43,8 @@ export const toggleCompleteTodo = async (_id: string): Promise<void> => {
 
 export const deleteTodo = async (_id: string): Promise<void> => {
     try {
-        const response = await fetch(`${backendApi}/api/todo/${_id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': `Bearer ${getAccessToken()}`
-            }
-        });
-        if (!response.ok) {
+        const response = await axiosInstance.delete<void>(`/api/todo/${_id}`);
+        if (response.status !== 200) {
             throw new Error(`HTTP error. status ${response.status}`);
         }
     } catch (error) {
