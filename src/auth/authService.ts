@@ -40,8 +40,6 @@ export const login = async (email: string, password: string) => {
 export const logout = async () => {
     accessToken = "none";
     localStorage.removeItem('accessToken');
-    const response = await axiosInstance.post('/api/logout');
-    return response;
 }
 
 export const getAccessToken = () => {
